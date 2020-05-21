@@ -2,9 +2,6 @@
 title: Mill Road Winter Fair.Github.Io
 timezone: UTC
 collections:
-  help-us:
-    title: Help Us
-    output: true
   posts:
     title: Posts
     output: true
