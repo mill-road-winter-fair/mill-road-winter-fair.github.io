@@ -9,3 +9,13 @@ collections:
     title: Uploads
     output: true
 theme: jekyll-theme-architect
+lsi: false
+safe: true
+source: _site 
+incremental: false
+highlighter: rouge
+gist:
+  noscript: false
+kramdown:
+  math_engine: mathjax
+  syntax_highlighter: rouge
