@@ -11,7 +11,7 @@ collections:
 theme: jekyll-theme-architect
 lsi: false
 safe: true
-source: _site 
+source: _site
 incremental: false
 highlighter: rouge
 gist:
