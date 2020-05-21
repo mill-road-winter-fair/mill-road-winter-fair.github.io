@@ -1,6 +1,7 @@
 ---
 title: Home
 date: 2020-05-21 14:59:00 Z
+layout: default
 ---
 
 ## MILL ROAD WINTER FAIR AGM
