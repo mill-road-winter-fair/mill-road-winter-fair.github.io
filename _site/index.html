@@ -1,16 +1,237 @@
-<!doctype html>
+<!DOCTYPE html>
+<!--
+This site is a mobile-first design.
+The navigation is in two parts: a main navigation bar, which is the same everywhere
+ and a tab-specific sub-navigation bar underneath. Any tabs that need to use
+ sub-navigation build their own using javascript when their tab is shown and This
+ navigation is kept at the top of the page using "sticky" javascript (not an
+ industry-wide term, we just call it that here).
+
+Since this is a mobile-first design it's important to consider phone screen space
+when adding new elements (e.g. to navigation bars) and since this is all in one
+page, css styles and div ids used for javascript should use tab-specific naming
+-->
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Test change</title>
-  </head>
-  <body>
-    <nav>
-  <a href="/" style="color:red;">Home</a>
-  <a href="/about.html">About</a>
+<head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-151724595-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-151724595-1');
+</script>
+<meta name="og:image" content="https://drive.google.com/drive/folders/1LPq-bIy3brDnD6jTsAVSx6Dy_oW-yuD5?usp=sharing/assets/img/system/mrwf_logo_red.png" />
+<meta name="og:locale" content="en_UK" />
+<meta name="og:description" content="Mill Road's annual Winter Fair is on the 5th of December this year, come on down between 10am and 4:30pm to join in fun." />
+<!-- Tells browsers they're definitely fine assuming this is western text -->
+<meta charset="utf-8"/>
+<title>Test change</title>
+<!-- Tells mobile browsers to fit this page to their screen -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Bootstrap 4 (styling library)-->
+<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+<!-- Javascript imports needed by bootstrap 4 (not slim version because we need async queries only in the full version) -->
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+<!-- Allows users to search all the items in the page, library is called Fuse -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.4.5/fuse.min.js"></script>
+<!-- Layout library -->
+<script src="https://unpkg.com/packery@2/dist/packery.pkgd.js"></script>
+<!-- Global styling -->
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- Useful functions needed by lots of our javascript -->
+<script src="assets/js/common.js"></script>
+<!-- For the shop tab -->
+<link rel="stylesheet" href="assets/css/shop_tab.css">
+<script src="assets/js/stalls_tab.js"></script>
+<!-- For the performances tab -->
+<link rel="stylesheet" href="assets/css/performances_tab.css">
+<script src="assets/js/performances_tab.js"></script>
+<!-- For the events tab -->
+<link rel="stylesheet" href="assets/css/events_tab.css">
+<script src="assets/js/events_tab.js"></script>
+<!-- For the search tab -->
+<link rel="stylesheet" href="assets/css/search_tab.css">
+<script src="assets/js/search_tab.js"></script>
+<!-- For the map tab -->
+<script src="assets/js/map_tab.js"></script>
+<!--<link rel="stylesheet" href="css/map_tab.css">-->
+<!-- For the thanks tab -->
+<link rel="stylesheet" href="assets/css/thanks_tab.css">
+<!-- For the Contacts Tab -->
+<script src="assets/js/contact_tab.js"></script>
+<!-- For the Helping Tab -->
+<script src="assets/js/helping_tab.js"></script>
+<script>
+// Specifically js for this layout
+// When the user scrolls the page, keep just the bits of navigation we want at the top of the page.
+window.onscroll = function() {keepNavSticky()};
+var sticky;
+var header;
+var body_original_offset;
+var body_original_margin_top;
+var body;
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function keepNavSticky() {
+  if (header) {
+	if (window.pageYOffset > sticky) {
+	  header.addClass("sticky");
+	  body.css({'margin-top': body_original_offset});
+	} else {
+	  header.removeClass("sticky");
+	  body.css({'margin-top': body_original_margin_top});
+	}
+  }
+}
+var scrollHeight = 0;
+
+// Runs once the whole page is loaded, adds dynamic code to the static elements
+$(document).ready(function() {
+  var url = document.location.toString();
+  header = $("#stickyHeader");
+	body = $(".tab-content");
+  // Get the offset position of the navbar - needed for the sticky logic.
+	var offset = header.offset();
+	var original_tab_offset = body.offset();
+	sticky = offset.top;
+	body_original_offset = original_tab_offset.top - sticky;
+	body_original_margin_top = body.css('margin-top');
+  // These events fire when we switch tabs
+	$(document).on("show.bs.tab", function (e) {
+		scrollHeight = $(document).scrollTop();
+	});
+	$(document).on("shown.bs.tab", function (e) {
+		$(window).scrollTop(scrollHeight);
+	});
+  if (url.match('#')) {
+      // Handle other urls used in the past
+      var target = url.split('#')[1];
+      switch(target) {
+        case "stalls":
+        case "food-and-drink-2019":
+          target = "shops";
+          break;
+        case "whats-on-2019":
+        case "what-s-new":
+          target = "events";
+          break;
+        case "mill-road-music":
+          target="performances";
+          break;
+      }
+      $('.nav-tabs a[href="#' + target + '"]').tab('show');
+  }
+
+  // Change hash for page-reload
+  $('.nav-tabs a').on('shown.bs.tab', function (e) {
+      window.location.hash = e.target.hash;
+  });
+});
+</script>
+</head>
+<body>
+  <div id="header-info">
+  <img class="header-item header-img" src="https://www.millroadwinterfair.org/assets/img/system/mrwf-mobile-logo-negative.png" style="max-width: 85%; max-height:3%;">
+  <img class="header-item header-img" src="https://www.millroadwinterfair.org/assets/img/system/date-time-inverse.png" style="height:3%;">
+  <div class="header-item" id="search-box"><input id="search-box-input" type="text" /><button id="search-box-button">Search</button></div>
+</div>
+<nav id="stickyHeader">
+  <ul class="nav nav-tabs" id="mrwfNav" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="home-tab"
+        data-toggle="tab" href="#home"
+        role="tab" aria-controls="home" aria-selected="true">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="agm-tab"
+        data-toggle="tab" href="#agm"
+        role="tab" aria-controls="agm" aria-selected="false">AGM</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="photo-gallery-tab"
+        data-toggle="tab" href="#photo-gallery"
+        role="tab" aria-controls="photo-gallery" aria-selected="false">Photo Gallery</a>
+    </li>
+    <li class="nav-item" style="display:none">
+        <a class="nav-link"	id="map-tab"
+        data-toggle="tab" href="#map"
+        role="tab" aria-controls="map" aria-selected="false">Map</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="events-tab"
+        data-toggle="tab" href="#events"
+        role="tab" aria-controls="events" aria-selected="false">What's On</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="shops-tab"
+        data-toggle="tab" href="#shops"
+        role="tab" aria-controls="shops" aria-selected="false">Stalls</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="performances-tab"
+        data-toggle="tab" href="#performances"
+        role="tab" aria-controls="music" aria-selected="false">Performances</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="contact-tab"
+        data-toggle="tab" href="#contact"
+        role="tab" aria-controls="contact" aria-selected="false">Contact Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="helping-tab"
+        data-toggle="tab" href="#helping"
+        role="tab" aria-controls="helping" aria-selected="false">Help Us</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="thanks-tab"
+        data-toggle="tab" href="#thanks"
+        role="tab" aria-controls="thanks" aria-selected="false">Thanks</a>
+    </li>
+    <!-- Hidden links for navigation from # -->
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="search-tab"
+        data-toggle="tab" href="#search"
+        role="tab" aria-controls="search" aria-selected="false">Search</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="twitter-tab"
+        data-toggle="tab" href="#twitter"
+        role="tab" aria-controls="twitter" aria-selected="false">Twitter</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="volunteering-tab"
+        data-toggle="tab" href="#volunteering"
+        role="tab" aria-controls="volunteering" aria-selected="false">Volunteering</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="donate-tab"
+        data-toggle="tab" href="#donate"
+        role="tab" aria-controls="donate" aria-selected="false">Donate</a>
+    </li>
+    <li class="nav-item" style="display:none">
+      <a class="nav-link" id="committee-tab"
+        data-toggle="tab" href="#committee"
+        role="tab" aria-controls="committee" aria-selected="false">Committee</a>
+    </li>
+
+  </ul>
+  <ul class="nav nav-tabs" id="mrwfFilters">
+  </ul>
 </nav>
 
-    <h1>hello world!</h1>
+  <div id="main-container">
+      <h1>hello world!</h1>
 
-  </body>
+  </div>
+</body>
 </html>

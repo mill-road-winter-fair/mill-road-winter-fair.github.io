@@ -11,7 +11,7 @@ collections:
 theme: jekyll-theme-architect
 lsi: false
 safe: true
-source: _site
+source: src
 incremental: false
 highlighter: rouge
 gist:
@@ -19,3 +19,4 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
+asset_base: https://drive.google.com/drive/folders/1LPq-bIy3brDnD6jTsAVSx6Dy_oW-yuD5?usp=sharing/assets

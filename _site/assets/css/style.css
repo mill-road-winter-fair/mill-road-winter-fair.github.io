@@ -1,0 +1,187 @@
+/**
+This site is a mobile-first design using several tabs in one load, it means the
+users load the site once and clicking through to other "pages" (actually tabs)
+is much quicker.
+
+Any tabs with hand-written copy in them will be in index.html. Any tabs which generate
+their contents based on online data sources (typically google spreadsheets) will
+load their information via the corresponding .js files in the background once the
+core HTML has loaded.
+
+The navigation is in two parts: a main navigation bar, which is the same everywhere
+ and a tab-specific sub-navigation bar underneath. Any tabs that need to use
+ sub-navigation build their own using javascript when their tab is shown and This
+ navigation is kept at the top of the page using "sticky" javascript (not an
+ industry-wide term, we just call it that here).
+
+Since this is a mobile-first design it's important to consider phone screen space
+when adding new elements (e.g. to navigation bars) and since this is all in one
+page, css styles and div ids used for javascript should use tab-specific naming
+*/
+ul.nav {
+	background-color: #006633;
+}
+
+.nav-link {
+	color: #FF6666;
+	padding: .5em .75em;
+}
+
+.tab-img {
+	height:90%;
+}
+
+.hidden {
+	display: none;
+}
+
+.tab-pane, body{
+	background-color: #FFF;
+}
+
+#stickyHeader, #header-info{
+	background-color: #CC3333;
+}
+
+#map-img {
+	width:90vw;
+}
+
+#mrwfNav {
+	font-weight: bold;
+	color: #FF6666;
+}
+
+#mrwfNav a:hover {
+	color: #FF6666;
+}
+
+#mrwfNav .nav-link.active {
+	background-color: #2b7028;
+	border-color: #2b7028;
+	color: #FF6666;
+}
+
+#mrwfFilters {
+	font-weight: bold;
+	margin-top: -1px;
+	color: #FF6666;
+	background-color: #cc9900;
+	font-size:.75em;
+}
+
+#mrwfFilters a:hover {
+	color: #2b7028;
+}
+
+#mrwfFilters .nav-link {
+	padding:1px;
+	color:#2b7028;
+}
+
+#mrwfFilters .nav-item {
+	padding:1px 5px;
+}
+#mrwfFilters {
+	padding-left:.5rem;
+}
+
+#mrwfFilters .nav-link.active {
+	background-color: #cc9900;
+	border-color: #cc9900;
+	color: #FF6666;
+}
+
+.header-img {
+	height:60px;
+}
+
+.header-item {
+  	margin: 0 1%;
+	padding: 2px;
+	color: #DDDDDD;
+}
+
+#search-box {
+	display:block;
+}
+
+.map {
+ 	width:90vw;
+	min-height:480px;
+}
+
+.tab-content {
+	padding: 30px;
+}
+
+/* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #CC3333;
+}
+
+.header-item input {
+	background-color: #990000;
+	color: #DDDDDD;
+	padding-left:0.25em;
+}
+
+.header-item input {
+	background-color: #990000;
+	color: #DDDDDD;
+	padding-left:0.25em;
+}
+
+.header-item button {
+	background-color: #cc9900;
+	color: #FFFFFF;
+}
+
+.donate-button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:150px;
+}
+
+#main-content {
+	min-height: 500px;
+}
+
+#right-panel {
+	float:right;
+	display: inline;
+	padding: 15px 25px;
+	margin: 0px 15px;
+  width: 350px;
+}
+
+#key-events {
+	padding: 15px 25px;
+	background-color: #66AAFF;;
+  color: #FFFFFF;
+}
+
+#key-events ul {
+  list-style: none;
+	margin-left: -2.5em;
+}
+
+#key-events li .event-time {
+	font-weight: bold;
+	display: inline;
+	padding-right: 10px;
+}
+
+body {
+  font-family: "Verdana", "Times New Roman";
+}
+
+@media screen and (max-width: 400px) {
+	#right-panel {
+	 width: 90vw;
+	}
+}
