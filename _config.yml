@@ -2,7 +2,7 @@
 title: Mill Road Winter Fair.Github.Io
 timezone: UTC
 collections:
-  help-us:
+  helping:
     title: Help Us
     output: true
     start_page: "/helping"
