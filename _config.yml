@@ -1,6 +1,9 @@
 ---
 title: Mill Road Winter Fair.Github.Io
 timezone: UTC
+cloudinary:
+  cloud_name: mill-road-winter-fair
+  api_key: 773282259623451
 collections:
   posts:
     title: Posts
@@ -18,4 +21,3 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-asset_base: https://drive.google.com/drive/folders/1LPq-bIy3brDnD6jTsAVSx6Dy_oW-yuD5?usp=sharing/assets
