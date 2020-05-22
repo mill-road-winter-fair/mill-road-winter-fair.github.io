@@ -7,6 +7,7 @@ layout: default
 
 ### Our Sponsors
 
-[![bush.jpg](/uploads/bush.jpg)](https://bushsales.co.uk)
+[![Bush Sales](/uploads/bush.jpg){: .donor-logo}](https://bushsales.co.uk)
+
 
 ### Our Donors

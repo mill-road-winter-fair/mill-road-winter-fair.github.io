@@ -12,6 +12,7 @@ collections:
   thanks:
     title: Thanks
     output: true
+    start_page: "/thanks"
   uploads:
     title: Uploads
     output: true
