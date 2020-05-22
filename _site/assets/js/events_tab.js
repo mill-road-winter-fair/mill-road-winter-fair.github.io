@@ -19,7 +19,7 @@ when adding new elements (e.g. to navigation bars) and since this is all in one
 page, css styles and div ids used for javascript should use tab-specific naming
 */
 function render_event_icon(filename, message) {
-	var icon_folder = "uploads//Uploads/icons";
+	var icon_folder = "https://www.millroadwinterfair.org/assets//Uploads/icons";
 	return "<img class=\"event-img\" src=\"" + icon_folder + "/" + filename + "\" alt=\"" + message + "\" title=\""+message + "\"/>";
 }
 function render_event_icons(event) {

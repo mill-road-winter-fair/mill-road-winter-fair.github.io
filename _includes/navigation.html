@@ -9,9 +9,8 @@
 <nav id="stickyHeader">
   <ul class="nav nav-tabs" id="mrwfNav" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" id="home-tab"
-        data-toggle="tab" href="index.html"
-        role="tab" aria-controls="home" aria-selected="true">Home</a>
+      <a class="nav-link{% if page.url == "/index.html" or page.url == "" %} active{% endif %}" id="home-tab"
+        href="index.html">Home</a>
     </li>
     <!--<li class="nav-item">
       <a class="nav-link" id="agm-tab"
@@ -49,9 +48,8 @@
         role="tab" aria-controls="contact" aria-selected="false">Contact Us</a>
     </li>-->
     <li class="nav-item">
-      <a class="nav-link" id="helping-tab"
-        data-toggle="tab" href="helping"
-        role="tab" aria-controls="helping" aria-selected="false">Help Us</a>
+      <a class="nav-link{% if page.url == "/helping" %} active{% endif %}" id="helping-tab"
+        href="helping">Help Us</a>
     </li>
     <!--
     <li class="nav-item">
