@@ -1,6 +1,8 @@
 ---
 title: Thanks
 date: 2020-05-22 11:14:00 Z
+permalink: thanks
+layout: default
 ---
 
 ##Thank you to our generous sponsors and donors
