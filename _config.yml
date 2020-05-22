@@ -9,6 +9,9 @@ collections:
   posts:
     title: Posts
     output: true
+  thanks:
+    title: Thanks
+    output: true
   uploads:
     title: Uploads
     output: true
