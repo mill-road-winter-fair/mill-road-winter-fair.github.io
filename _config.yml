@@ -21,4 +21,4 @@ gist:
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-asset_base: uploads/
+asset_base: https://www.millroadwinterfair.org/assets/
