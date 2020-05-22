@@ -21,7 +21,7 @@ page, css styles and div ids used for javascript should use tab-specific naming
 img.donor-logo {
   max-height: 150px;
   padding: 5px;
-  display:block;
+  display:inline-block;
 }
 
 .sponsor-name {
