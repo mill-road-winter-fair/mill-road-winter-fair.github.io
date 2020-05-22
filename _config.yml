@@ -4,6 +4,7 @@ timezone: UTC
 collections:
   help-us:
     title: Help Us
+    start_page: /helping
     output: true
   posts:
     title: Posts
