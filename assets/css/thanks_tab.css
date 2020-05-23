@@ -29,26 +29,22 @@ img.donor-logo {
   font-weight: bold
 }
 
-fieldset.thanks legend {
-  font-weight: bold;
-}
-
-fieldset.thanks {
-  text-align: center;
-}
-
-fieldset.thanks ul {
+ul.thanks {
   list-style-type: none;
-  text-align: center;
 }
 
-fieldset.thanks ul li {
+.thanks ul li {
   display:inline-block;
 }
 
 .special-why {
   font-weight: bold;
-  display:inline;
+  display:inline-block;
+  text-align: center;
+}
+
+.special-who {
+  display:block;
 }
 
 #donors li {
